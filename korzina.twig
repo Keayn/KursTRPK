@@ -1,0 +1,7 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1 class="mb-5" style="color: black;">{{ title }}</h1>
+
+    {{ include('menu.twig', {'1_objects' : objects}) }} 
+{% endblock %}

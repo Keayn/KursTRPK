@@ -1,0 +1,9 @@
+{% from "forms.twig" import link as pc_objects_link %}
+
+<ul class="list-group">
+    {% for item in pc_objects %}
+    <li class="list-group-item {{ title == item.title ? 'active' }}">
+        {{ pc_objects_link(item.title, "/pc_objects/" ~ item.id, "pc_objects-link", False) }}
+    </li>
+    {% endfor %}
+</ul>

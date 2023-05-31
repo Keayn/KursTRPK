@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet" />
+    <title>{{ title }}</title>
+    <style>
+        body {
+            background-image: linear-gradient(to bottom right, #1b2d4b, #4481eb);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #333;
+        }
+
+        .navbar-brand:hover {
+            color: #555;
+        }
+
+        .nav-link {
+            color: #333;
+        }
+
+        .nav-link:hover {
+            color: #555;
+        }
+
+        .btn {
+            color: #fff;
+        }
+
+        .btn:hover {
+            color: #ccc;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .history-item {
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-6" style="background-color: rgba(255, 255, 255, 0.8);">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-gamepad"></i></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link active" aria-current="page" href="/">Каталог</a>
+                    </li>
+                    {# {% for type in types %}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/?type={{ type.type }}">{{ type.type|title }}</a>
+                    </li>
+                    {% endfor %} #}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/search">Поиск по каталогу</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/pc_objects/create">Добавить товар в
+                            каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/create_type">Добавить тип товара</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active btn-primary" aria-current="page" href="/korzina">Корзина</a>
+                     </li>
+                </ul>
+            </div>
+
+
+            
+
+
+            {% if is_logged == true %}
+            <form action="/logout" method="POST">
+                <button type="submit" class="btn btn-danger p-2">Выход</button>
+            </form>
+            {% else %}
+            <form action="/login" method="GET">
+                <button type="submit" class="btn btn-success p-2">Вход</button>
+            </form>
+            {% endif %}
+        <div class="ml-auto"></div>
+    </nav>
+
+    <div class="container" style="background-color: rgba(255, 255, 255, 0.8);">
+        <div class="row">
+            {% block menu %}
+            {% endblock %}
+            <div class="col-10">
+                {% block content %}
+                    <h1>Добро пожаловать!</h1>
+                    <p>Это пример красивого текста в главном контейнере.</p>
+                {% endblock %}
+            </div>
+            <div class="col-2 mt-2">
+                {#<div class="history">
+                    <ul class="list-group">
+                    <p style="color: black;">Последние страницы, которые вы посетили:</p>
+                        {% for element in history %} <ul class="list-group">
+                        
+                        <li class="history-item list-group-item list-group-item-success"><a href="{{ element }}">{{ element }}</a></li>
+                        <a  style="color: white; padding: 2px; text-decoration: none; overflow-x:hidden;" href="{{ element }}">{{ element }}</a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                #}
+            </div>
+        </div> 
+    </div>
+
+</body>
+</html>

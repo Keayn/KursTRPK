@@ -1,0 +1,47 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1 style="color: black;">Добавление товара в каталог</h1>
+    <hr>
+
+    {% if message %}
+        <div class="alert alert-info">
+            <span style="color: black;">{{ message }}</span>
+            <a href="/pc-object/{{ id }}" style="color: black;">Открыть добавленные товары</a>
+        </div>
+    {% endif %}
+
+    <form action="" method="POST" enctype="multipart/form-data" class="row g-3">
+        <div class="col-4">
+            <label class="form-label" style="color: black;">Название</label>
+            <input type="text" class="form-control" name="title" value="{{object.title}}">
+        </div>
+        <div class="col-4">
+            <label class="form-label" style="color: black;">Краткое описание</label>
+            <input type="text" class="form-control" name="description">
+        </div>
+        <div class="col-4">
+            <label class="form-label" style="color: black;">Тип</label>
+            <select class="form-control" name="type">
+                {% for type in types %}
+                <option value="{{ type.title }}" {% if type.title == object.type %}selected {% endif %}>
+                    {{ type.type|title }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" style="color: black;">Фото</label>
+            <input class="form-control" type="file" name="image">
+            <div class="mt-3" style="width: 300px; margin: 0 auto;">
+                <img src="{{ object.image }}" style="width: 100%;">
+        </div>
+        <div class="col-12">
+            <textarea name="info" placeholder="Полное описание товара..." class="form-control" rows="5" style="color: black;">{{object.info}}</textarea>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary" style="color: black;">Добавить</button>
+        </div>
+    </form>
+
+{% endblock %}
